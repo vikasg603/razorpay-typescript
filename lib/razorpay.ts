@@ -19,6 +19,17 @@ class Razorpay {
 	key_id: string;
 	key_secret: string;
 	api: API;
+	payments: ReturnType<typeof paymentsResource>;
+	paymentLinks: ReturnType<typeof paymentLinksResource>;
+	refunds: ReturnType<typeof refundsResource>;
+	orders: ReturnType<typeof ordersResource>;
+	customers: ReturnType<typeof customersResource>;
+	transfers: ReturnType<typeof transfersResource>;
+	virtualAccounts: ReturnType<typeof virtualAccountsResource>;
+	invoices: ReturnType<typeof invoicesResource>;
+	plans: ReturnType<typeof plansResource>;
+	subscriptions: ReturnType<typeof subscriptionsResource>;
+	addons: ReturnType<typeof addonsResource>;
 
 	static validateWebhookSignature (body: string, signature: string, secret: string) {
 		return validateWebhookSignature(body, signature, secret)
@@ -45,24 +56,18 @@ class Razorpay {
 			key_secret,
 			headers
 		})
-		this.addResources()
-	}
-
-	addResources () {
-		Object.assign(this, {
-			payments: paymentsResource(this.api),
-			paymentLinks: paymentLinksResource(this.api),
-			refunds: refundsResource(this.api),
-			orders: ordersResource(this.api),
-			customers: customersResource(this.api),
-			transfers: transfersResource(this.api),
-			virtualAccounts: virtualAccountsResource(this.api),
-			invoices: invoicesResource(this.api),
-			plans: plansResource(this.api),
-			subscriptions: subscriptionsResource(this.api),
-			addons: addonsResource(this.api)
-		})
+		this.payments = paymentsResource(this.api)
+		this.paymentLinks = paymentLinksResource(this.api)
+		this.refunds = refundsResource(this.api)
+		this.orders = ordersResource(this.api)
+		this.customers = customersResource(this.api)
+		this.transfers = transfersResource(this.api)
+		this.virtualAccounts = virtualAccountsResource(this.api)
+		this.invoices = invoicesResource(this.api)
+		this.plans = plansResource(this.api)
+		this.subscriptions = subscriptionsResource(this.api)
+		this.addons = addonsResource(this.api)
 	}
 }
 
-module.exports = Razorpay
+export default Razorpay
