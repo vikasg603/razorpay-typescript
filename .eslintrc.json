@@ -1,0 +1,26 @@
+{
+	"env": {
+		"node": true,
+		"es2021": true
+	},
+	"extends": ["standard"],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": 12,
+		"sourceType": "module"
+	},
+	"plugins": ["@typescript-eslint", "simple-import-sort"],
+	"rules": {
+		"indent": [2, "tab"],
+		"no-tabs": 0,
+		"camelcase": "off",
+		"simple-import-sort/imports": "error",
+		"simple-import-sort/exports": "error",
+		"no-use-before-define": "off",
+		"@typescript-eslint/no-use-before-define": ["error"],
+		"no-unused-expressions": [
+			"error",
+			{"allowShortCircuit": true, "allowTernary": true}
+		]
+	}
+}
