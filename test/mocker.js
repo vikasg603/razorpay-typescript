@@ -40,7 +40,7 @@ Mocker.prototype.mock = function (params) {
 					url,
 					method,
 					requestQueryParams,
-					requestBody: parseReqBody(requestBody),
+					requestBody: requestBody,
 					headers: this.req.headers
 				}
 			}

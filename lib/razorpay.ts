@@ -71,3 +71,5 @@ class Razorpay {
 }
 
 export default Razorpay
+
+module.exports = Razorpay

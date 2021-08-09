@@ -2,7 +2,7 @@
 
 const chai = require('chai')
 const assert = chai.assert
-const Razorpay = require('../dist/razorpay').default
+const Razorpay = require('../dist/razorpay')
 
 describe('Razorpay is initialized properly', () => {
 	it('Validation for key_id & key_secret', () => {

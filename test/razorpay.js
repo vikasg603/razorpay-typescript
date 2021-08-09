@@ -1,6 +1,6 @@
 'use strict'
 
-const Razorpay = require('../dist/razorpay').default
+const Razorpay = require('../dist/razorpay')
 
 module.exports = new Razorpay({
 	key_id: 'XXX',

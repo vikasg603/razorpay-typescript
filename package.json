@@ -6,7 +6,7 @@
   "scripts": {
     "prepublish": "npm test",
     "build": "tsc",
-    "test": "tsc && mocha"
+    "test": "tsc && mocha ./test/**/*.spec.js"
   },
   "author": "Vikas",
   "types": "dist/razorpay.d.ts",
