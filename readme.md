@@ -1,6 +1,6 @@
 # Razorpay Node SDK
 
-[![npm](https://img.shields.io/npm/v/razorpay.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/razorpay-node-typescript)
+[![npm](https://img.shields.io/npm/v/razorpay-node-typescript.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/razorpay-node-typescript)
 
 Unofficial nodejs library for [Razorpay API](https://docs.razorpay.com/docs/payments) with typescript support.
 
