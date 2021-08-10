@@ -14,7 +14,7 @@ Read up here for getting started and understanding the payment flow with Razorpa
 3.  Improved code to not require any module inside the function (This was the major reason I opted to create my own library, as requiring module is CPU intensive synchronous task, and requiring it inside the function can block other requests)
 4.  Added support for payment-links
 5.  Removed deprecated request and request-promise and shifted to Axios (https://github.com/request/request/issues/3142).
-6.  Removed the legacy error handling where you have to handle the synchronous and promise errors (added the standard RazorpayError class for handling all the errors).
+6.  Removed the legacy error handling where you have to handle both synchronous as well as promise errors (added the standard RazorpayError class for handling all the errors).
 7.  Any many more reasons
 
 ## Installation
