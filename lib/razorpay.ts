@@ -18,6 +18,7 @@ import { validateWebhookSignature } from './utils/razorpay-utils'
 
 class Razorpay {
 	static VERSION = npmPackage.version || '1.0.0';
+	static PACKAGE_NAME = npmPackage.name || 'razorpay-node-typescript';
 	payments: ReturnType<typeof paymentsResource>;
 	paymentLinks: ReturnType<typeof paymentLinksResource>;
 	refunds: ReturnType<typeof refundsResource>;
@@ -47,7 +48,7 @@ class Razorpay {
 
 		const api = new API({
 			hostUrl: 'https://api.razorpay.com/v1/',
-			ua: `razorpay-node@${Razorpay.VERSION}`,
+			ua: `${Razorpay.PACKAGE_NAME}@${Razorpay.VERSION}`,
 			key_id,
 			key_secret,
 			headers
