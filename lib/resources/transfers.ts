@@ -2,7 +2,7 @@
 
 import API from '../api'
 import { Notes, SupportedCurrency } from '../types'
-import { normalizeDate } from '../utils/razorpay-utils'
+import { normalizeBoolean, normalizeDate } from '../utils/razorpay-utils'
 import RazorpayError from '../utils/RazorPayError'
 
 export interface TransferListParams {
@@ -43,6 +43,11 @@ export interface TransferCreateParams {
 	account: string;
 	amount: number;
 	currency: SupportedCurrency;
+	notes?: Notes;
+}
+
+export interface TransferEditParams {
+	on_hold: boolean;
 	notes?: Notes;
 }
 
@@ -105,14 +110,18 @@ export default function (api: API) {
 			})
 		},
 
-		/*
-		async edit (transferId: string, params: Partial<TransferCreateParams>) {
+		async edit (transferId: string, params: Partial<TransferEditParams>) {
+			if (!transferId) {
+				throw new RazorpayError('Missing Paramter', '`transfer_id` is mandatory')
+			}
+
+			params.on_hold = normalizeBoolean(params.on_hold)
+
 			return api.patch<TransferEntity>({
 				url: `/transfers/${transferId}`,
 				data: params
 			})
 		},
-		*/
 
 		async reverse (transferId: string, params: {amount: string | number}) {
 			if (!transferId) {

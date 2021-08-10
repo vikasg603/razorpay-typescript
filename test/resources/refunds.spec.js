@@ -87,11 +87,13 @@ describe('REFUNDS', () => {
 
   describe('Refund fetch', () => {
     it('Throw error when refundId is provided', () => {
-      assert.throws(
-        rzpInstance.refunds.fetch,
-        '`refund_id` is mandatory',
-        'Should throw exception when refundId is not provided'
-      )
+      rzpInstance.refunds.fetch().then(resp => {
+        assert.fail('Payment refund should not succeed')
+        done()
+      }).catch(err => {
+        assert.equal(err.error.message, '`refund_id` is mandatory')
+        done()
+      })
     })
 
     it('Forms the refund fetch request', (done) => {

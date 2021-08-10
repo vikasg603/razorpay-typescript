@@ -23,8 +23,10 @@ describe('CUSTOMERS', () => {
       name: 'test',
       email: 'test@razorpay.com',
       contact: '123456789',
-      'notes[note1]': 'This is note1',
-      'notes[note2]': 'This is note2'
+      notes: {
+        note1: 'This is note1',
+        note2: 'This is note2'
+      }
     }
 
     mocker.mock({
@@ -65,7 +67,9 @@ describe('CUSTOMERS', () => {
       name: 'test',
       email: 'test@razorpay.com',
       contact: '123456789',
-      'notes[note1]': 'This is note1'
+      notes: {
+        note1: 'This is note1'
+      }
     }
 
     mocker.mock({

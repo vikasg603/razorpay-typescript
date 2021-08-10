@@ -70,12 +70,14 @@ describe('PAYMENTS', () => {
   })
 
   describe('Payment fetch', () => {
-    it('Throw error when paymentId is not provided', () => {
-      assert.throws(
-        rzpInstance.payments.fetch,
-        '`payment_id` is mandatory',
-        'Should throw exception when paymentId is not provided'
-      )
+    it('Throw error when paymentId is not provided', (done) => {
+      rzpInstance.payments.fetch().then(resp => {
+        assert.fail('Payment fetch should not succeed')
+        done()
+      }).catch(err => {
+        assert.equal(err.error.message, '`payment_id` is mandatory')
+        done()
+      })
     })
 
     it('Forms the payment fetch request', (done) => {
@@ -98,21 +100,19 @@ describe('PAYMENTS', () => {
 
   describe('Payment capture', () => {
     it('Throws error when paymentId or amount is not provided', () => {
-      assert.throws(
-        rzpInstance.payments.capture,
-        '`payment_id` is mandatory',
-        'Should throw exception when no args are provided'
-      )
-
-      try {
-        rzpInstance.payments.capture('pay_sometestId')
-      } catch (e) {
-        assert.equal(
-          e.message,
-          '`amount` is mandatory',
-          'throw exception when amount is not provided'
-        )
-      }
+      rzpInstance.payments.capture().then(resp => {
+        assert.fail('Payment capture should not succeed')
+        done()
+      }).catch(err => {
+        assert.equal(err.error.message, '`payment_id` is mandatory')
+        rzpInstance.payments.capture('pay_sometestId').then(resp => {
+          assert.fail('Payment capture should not succeed')
+          done()
+        }).catch(err => {
+          assert.equal(err.error.message, '`amount` is mandatory')
+          done()
+        })
+      })
     })
 
     it('Payment capture request', (done) => {
@@ -144,12 +144,14 @@ describe('PAYMENTS', () => {
   })
 
   describe('Payment Refund', () => {
-    it('Throw error when paymentId is not provided', () => {
-      assert.throws(
-        rzpInstance.payments.refund,
-        '`payment_id` is mandatory',
-        'Throw exception when payment_id is not provided'
-      )
+    it('Throw error when paymentId is not provided', (done) => {
+      rzpInstance.payments.refund().then(resp => {
+        assert.fail('Payment refund should not succeed')
+        done()
+      }).catch(err => {
+        assert.equal(err.error.message, '`payment_id` is mandatory')
+        done()
+      })
     })
 
     it('payment refund request', (done) => {
@@ -179,8 +181,10 @@ describe('PAYMENTS', () => {
             response.__JUST_FOR_TESTS__.requestBody,
             {
               amount: refundAmount,
-              'notes[note1]': 'This is note1',
-              'notes[note2]': 'This is note2'
+              notes: {
+                note1: 'This is note1',
+                note2: 'This is note2'
+              }
             }
           ),
           'Amount & notes are passed in request body'
@@ -192,11 +196,13 @@ describe('PAYMENTS', () => {
 
   describe('Payment Transfers', () => {
     it('Throw error when paymentId is not provided', () => {
-      assert.throws(
-        rzpInstance.payments.transfer,
-        '`payment_id` is mandatory',
-        'Throw exception when payment_id is not provided'
-      )
+      rzpInstance.payments.transfer().then(resp => {
+        assert.fail('Payment transfer should not succeed')
+        done()
+      }).catch(err => {
+        assert.equal(err.error.message, '`payment_id` is mandatory')
+        done()
+      })
     })
 
     it('Payment Transfer request', (done) => {
@@ -230,12 +236,18 @@ describe('PAYMENTS', () => {
           equal(
             response.__JUST_FOR_TESTS__.requestBody,
             {
-              'transfers[0][account]': 'acc_7jO4N6LScw5CEG',
-              'transfers[0][amount]': 100,
-              'transfers[0][currency]': 'INR',
-              'transfers[0][on_hold]': 1,
-              'notes[note1]': 'This is note1',
-              'notes[note2]': 'This is note2'
+              transfers: [
+                {
+                  account: 'acc_7jO4N6LScw5CEG',
+                  amount: 100,
+                  currency: 'INR',
+                  on_hold: 1
+                }
+              ],
+              notes: {
+                note1: 'This is note1',
+                note2: 'This is note2'
+              }
             }
           ),
           'Correct params are passed in request body'

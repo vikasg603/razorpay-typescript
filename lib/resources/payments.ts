@@ -208,23 +208,16 @@ export default function payments (api: API) {
 				url: `/payments/${paymentId}/transfers`,
 				data: params
 			})
-		}
+		},
 
-		/*
-			bankTransfer(paymentId: string, callback?: callbackFn) {
-
+		async bankTransfer (paymentId: string) {
 			if (!paymentId) {
-
-				if(callback) {
-				callback(new Error(ID_REQUIRED_MSG), null)
-				}
-				return Promise.reject(new Error(ID_REQUIRED_MSG))
+				throw new RazorpayError('Missing Parameter', ID_REQUIRED_MSG)
 			}
 
 			return api.get({
 				url: `/payments/${paymentId}/bank_transfer`
-			}, callback);
-			}
-		*/
+			})
+		}
 	}
 }

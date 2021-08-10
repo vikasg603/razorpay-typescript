@@ -145,11 +145,10 @@ describe("VIRTUAL_ACCOUNTS", () => {
   it ("Create Virtual Account", (done) => {
   
     const params = {
-    
       notes : {"comment": "My notes"},
       param1: "param1",
       param2: "param2"
-    }, {notes, ...rest} = params;
+    }
 
     mocker.mock({
       url   : `${SUB_PATH}`,
@@ -160,7 +159,7 @@ describe("VIRTUAL_ACCOUNTS", () => {
  
       assert.ok(equal(
         response.__JUST_FOR_TESTS__.requestBody,
-        Object.assign(rest, notes)),
+        params),
         "Params matched, and notes normalized"
       );
 
@@ -188,15 +187,15 @@ describe("VIRTUAL_ACCOUNTS", () => {
     it("Url Match", (done) => {
     
       mocker.mock({
-        url: `${SUB_PATH}/${TEST_VIRTUAL_ACCOUNT}`,
-        method: "PATCH"
+        url: `${SUB_PATH}/${TEST_VIRTUAL_ACCOUNT}/close`,
+        method: "POST"
       });
 
       rzpInstance.virtualAccounts.close(TEST_VIRTUAL_ACCOUNT).then((response) => {
      
         assert.equal(
           response.__JUST_FOR_TESTS__.url,
-          `${FULL_PATH}/${TEST_VIRTUAL_ACCOUNT}`,
+          `${FULL_PATH}/${TEST_VIRTUAL_ACCOUNT}/close`,
           "Url is formed correctly"       
         );
 

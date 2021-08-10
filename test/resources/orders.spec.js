@@ -70,12 +70,14 @@ describe('ORDERS', () => {
   })
 
   describe('Order fetch', () => {
-    it('Throw error when orderId is provided', () => {
-      assert.throws(
-        rzpInstance.orders.fetch,
-        '`order_id` is mandatory',
-        'Should throw exception when orderId is not provided'
-      )
+    it('Throw error when orderId is provided', (done) => {
+      rzpInstance.orders.fetch().then(resp => {
+        assert.fail('Order fetch should not succeed')
+        done()
+      }).catch(err => {
+        assert.equal(err.error.message, '`order_id` is mandatory')
+        done()
+      })
     })
 
     it('Forms the order fetch request', (done) => {
@@ -98,23 +100,13 @@ describe('ORDERS', () => {
 
   describe('Order create', () => {
     it('Throws error when mandatory fields are not provided', () => {
-      assert.throws(
-        rzpInstance.orders.create,
-        '`amount` is mandatory',
-        'Should throw exception when amount is not provided'
-      )
-
-      try {
-        rzpInstance.orders.create({
-          method: 'emandate',
-        })
-      } catch (e) {
-        assert.equal(
-          e.message,
-          '`amount` is mandatory',
-          'Should throw exception when amount is not provided with emandate method'
-        )
-      }
+      rzpInstance.orders.create().then(resp => {
+        assert.fail('Order Create should not succeed')
+        done()
+      }).catch(err => {
+        assert.equal(err.error.message, '`amount` is mandatory')
+        done()
+      })
     })
 
     it('Order create request', (done) => {
@@ -151,8 +143,10 @@ describe('ORDERS', () => {
               receipt: receipt,
               currency: 'INR',
               payment_capture: 1,
-              'notes[note1]': 'This is note1',
-              'notes[note2]': 'This is note2'
+              notes: {
+                note1: 'This is note1',
+                note2: 'This is note2'
+              }
             }
           ),
           'All params are passed in request body'
@@ -164,11 +158,13 @@ describe('ORDERS', () => {
 
   describe('Fetch order\'s payments', () => {
     it('Throw error when orderId is not provided', () => {
-      assert.throws(
-        rzpInstance.orders.fetchPayments,
-        '`order_id` is mandatory',
-        'Throw exception when order_id is not provided'
-      )
+      rzpInstance.orders.fetchPayments().then(resp => {
+        assert.fail('Order fetch Payments should not succeed')
+        done()
+      }).catch(err => {
+        assert.equal(err.error.message, '`order_id` is mandatory')
+        done()
+      })
     })
 
     it('Fetch order\'s payments', (done) => {
