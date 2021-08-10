@@ -2,7 +2,6 @@
 
 import API from '../api'
 import { Notes } from '../types'
-import { normalizeNotes } from '../utils/razorpay-utils'
 import RazorpayError from '../utils/RazorPayError'
 
 interface CustomerEntity {
@@ -34,26 +33,20 @@ export default function customers (api: API) {
 
 	return {
 		async create (params: CustomerCreateParams) {
-			const { notes, ...rest } = params
-			const data = Object.assign(rest, normalizeNotes(notes))
-
 			return api.post<CustomerEntity>({
 				url: '/customers',
-				data
+				data: params
 			})
 		},
 
 		async edit (customerId: string, params: CustomerCreateParams) {
-			const { notes, ...rest } = params
-			const data = Object.assign(rest, normalizeNotes(notes))
-
 			if (!customerId) {
 				throw new RazorpayError('Missing Parameter', MISSING_ID_ERROR)
 			}
 
 			return api.put({
 				url: `/customers/${customerId}`,
-				data
+				data: params
 			})
 		},
 

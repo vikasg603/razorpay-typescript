@@ -50,9 +50,9 @@ describe("INVOICES", () => {
           notes: {"something": "something else"}
         },
         expectedParams = {
-          param1: params.param1,
-          param2: params.param2,
-          ...(normalizeNotes(params.notes))
+          param1: "something",
+          param2: "something else",
+          notes: {"something": "something else"}
         },
         methodArgs = [params],
         methodName = "create",
@@ -83,7 +83,7 @@ describe("INVOICES", () => {
         expectedParams = {
           param1: params.param1,
           param2: params.param2,
-          ...(normalizeNotes(params.notes))
+          notes: params.notes
         },
         methodArgs = [TEST_INVOICE_ID, params],
         mockerParams = {

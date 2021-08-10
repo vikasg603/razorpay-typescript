@@ -2,7 +2,7 @@
 
 import API from '../api'
 import { Notes } from '../types'
-import { normalizeDate, normalizeNotes } from '../utils/razorpay-utils'
+import { normalizeDate } from '../utils/razorpay-utils'
 import RazorpayError from '../utils/RazorPayError'
 import { paymentAllResponse } from './payments'
 
@@ -108,12 +108,9 @@ export default function (api: API) {
 		},
 
 		async create (params : VirtualAccountCreateParams) {
-			const { notes, ...rest } = params
-			const data = Object.assign(rest, normalizeNotes(notes))
-
 			return api.post({
 				url: BASE_URL,
-				data
+				data: params
 			})
 		},
 

@@ -2,7 +2,7 @@
 
 import API from '../api'
 import { Notes, SupportedCurrency } from '../types'
-import { normalizeBoolean, normalizeDate, normalizeNotes } from '../utils/razorpay-utils'
+import { normalizeBoolean, normalizeDate } from '../utils/razorpay-utils'
 import RazorpayError from '../utils/RazorPayError'
 import { paymentAllResponse } from './payments'
 
@@ -96,7 +96,7 @@ export default function orders (api: API) {
 				currency,
 				receipt,
 				...otherParams
-			}, normalizeNotes(notes))
+			}, notes)
 
 			return api.post<OrderEntity>({
 				url: '/orders',

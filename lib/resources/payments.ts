@@ -6,7 +6,7 @@
 
 import API from '../api'
 import { AcquirerData, Notes, SupportedCurrency } from '../types'
-import { normalizeBoolean, normalizeDate, normalizeNotes } from '../utils/razorpay-utils'
+import { normalizeBoolean, normalizeDate } from '../utils/razorpay-utils'
 import RazorpayError from '../utils/RazorPayError'
 
 const ID_REQUIRED_MSG = '`payment_id` is mandatory'
@@ -173,16 +173,13 @@ export default function payments (api: API) {
 		},
 
 		async refund (paymentId: string, params: paymentRefundParams = {}) {
-			const { notes, ...otherParams } = params
-
 			if (!paymentId) {
 				throw new RazorpayError('Missing Parameter', ID_REQUIRED_MSG)
 			}
 
-			const data = Object.assign(otherParams, normalizeNotes(notes))
 			return api.post<RefundEntity>({
 				url: `/payments/${paymentId}/refund`,
-				data
+				data: params
 			})
 		},
 
@@ -195,7 +192,6 @@ export default function payments (api: API) {
 				const transfers = params.transfers
 				transfers.forEach(function (transfer) {
 					transfer.on_hold = normalizeBoolean(!!transfer.on_hold)
-					transfer.notes = normalizeNotes(transfer.notes)
 				})
 			}
 			return api.post<TransferEntity>({

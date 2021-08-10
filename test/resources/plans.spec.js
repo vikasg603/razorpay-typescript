@@ -52,7 +52,7 @@ describe("PLANS", () => {
         expectedParams = {
           param1: params.param1,
           param2: params.param2,
-          ...(normalizeNotes(params.notes))
+          notes:params.notes
         },
         methodArgs = [params],
         methodName = "create",

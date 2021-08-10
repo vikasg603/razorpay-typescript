@@ -160,7 +160,7 @@ describe("VIRTUAL_ACCOUNTS", () => {
  
       assert.ok(equal(
         response.__JUST_FOR_TESTS__.requestBody,
-        Object.assign(rest, normalizeNotes(notes))),
+        Object.assign(rest, notes)),
         "Params matched, and notes normalized"
       );
 

@@ -6,7 +6,7 @@
 
 import API from '../api'
 import { Notes, SupportedCurrency } from '../types'
-import { normalizeDate, normalizeNotes } from '../utils/razorpay-utils'
+import { normalizeDate } from '../utils/razorpay-utils'
 import RazorpayError from '../utils/RazorPayError'
 
 export interface AddonItem {
@@ -109,12 +109,10 @@ export default function subscriptionsApi (api: API) {
 			 */
 
 			const url = BASE_URL
-			const { notes, ...rest } = params
-			const data = Object.assign(rest, normalizeNotes(notes))
 
 			return api.post<SubscriptionEntity>({
 				url,
-				data
+				data: params
 			})
 		},
 

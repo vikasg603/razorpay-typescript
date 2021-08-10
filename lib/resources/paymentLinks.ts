@@ -6,7 +6,6 @@
 
 import API from '../api'
 import { Notes, SupportedCurrency } from '../types'
-import { normalizeNotes } from '../utils/razorpay-utils'
 import RazorpayError from '../utils/RazorPayError'
 
 const ID_REQUIRED_MSG = '`amount` is mandatory'
@@ -84,16 +83,15 @@ interface paymentLinkAllResponse {
 export default function paymentLinks (api: API) {
 	return {
 		async create (params: paymentLinkParams) {
-			const { amount, notes, ...otherParams } = params
+			const { amount } = params
 
 			if (!amount) {
 				throw new RazorpayError('Missing Parameter', ID_REQUIRED_MSG)
 			}
 
-			const data = Object.assign(otherParams, normalizeNotes(notes))
 			return api.post<PaymentLinkEntity>({
 				url: '/payment-links',
-				data: data
+				data: params
 			})
 		},
 

@@ -58,7 +58,7 @@ describe('Razorpay Utils', () => {
       'Boolean check with false'
     )
   });
-
+/*
   it('normalizeNotes', () => {
     assert.ok(
       equal(
@@ -74,7 +74,7 @@ describe('Razorpay Utils', () => {
       'Transforms the notes'
     )
   });
-
+*/
   it('isDefined', () => {
   
     assert.ok(

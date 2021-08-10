@@ -2,7 +2,7 @@
 
 import API from '../api'
 import { Notes, SupportedCurrency } from '../types'
-import { normalizeBoolean, normalizeDate, normalizeNotes } from '../utils/razorpay-utils'
+import { normalizeDate } from '../utils/razorpay-utils'
 import RazorpayError from '../utils/RazorPayError'
 
 export interface TransferListParams {
@@ -90,30 +90,16 @@ export default function (api: API) {
 		},
 
 		async create (params: TransferCreateParams) {
-			const { notes, ...rest } = params
-			const data = Object.assign(rest, normalizeNotes(notes))
-
-			if (data.on_hold) {
-				data.on_hold = normalizeBoolean(data.on_hold)
-			}
-
 			return api.post<TransferEntity>({
 				url: '/transfers',
-				data
+				data: params
 			})
 		},
 
 		async edit (transferId: string, params: TransferCreateParams) {
-			const { notes, ...rest } = params
-			const data = Object.assign(rest, normalizeNotes(notes))
-
-			if (typeof data.on_hold !== 'undefined') {
-				data.on_hold = normalizeBoolean(data.on_hold)
-			}
-
 			return api.patch<TransferEntity>({
 				url: `/transfers/${transferId}`,
-				data
+				data: params
 			})
 		},
 
