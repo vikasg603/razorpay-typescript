@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/razorpay-node-typescript.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/razorpay-node-typescript)
 
-Unofficial nodejs library for [Razorpay API](https://docs.razorpay.com/docs/payments) with typescript support.
+Unofficial nodejs library for [Razorpay API](https://docs.razorpay.com/docs/payments) with typescript support (Still in testing stage, so use at your own risk).
 
 Read up here for getting started and understanding the payment flow with Razorpay: [https://docs.razorpay.com/docs/getting-started](https://docs.razorpay.com/docs/getting-started)
 
