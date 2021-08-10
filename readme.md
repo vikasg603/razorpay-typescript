@@ -1,3 +1,4 @@
+
 # Razorpay Node SDK
 
 [![npm](https://img.shields.io/npm/v/razorpay-node-typescript.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/razorpay-node-typescript)
@@ -53,20 +54,20 @@ instance.payments
   });
 ```
 
-## Supported Resources
+## Error Handling
 
-- [Payments](https://github.com/razorpay/razorpay-node/wiki#payments)
-- [Refunds](https://github.com/razorpay/razorpay-node/wiki#refunds)
-- [Orders](https://github.com/razorpay/razorpay-node/wiki#orders)
-- [Customers](https://github.com/razorpay/razorpay-node/wiki#customers)
-- [Transfers](https://github.com/razorpay/razorpay-node/wiki#transfers)
-- [Virtual Accounts](https://github.com/razorpay/razorpay-node/wiki#virtual-accounts)
-- [Invoices](https://github.com/razorpay/razorpay-node/wiki#invoices)
-- [Plans](https://github.com/razorpay/razorpay-node/wiki#plans)
-- [Subscriptions](https://github.com/razorpay/razorpay-node/wiki#subscriptions)
-- [Addons](https://github.com/razorpay/razorpay-node/wiki#addons)
-- [Webhooks](https://github.com/razorpay/razorpay-node/wiki#webhooks)
-- [Partner Auth](https://github.com/razorpay/razorpay-node/wiki#partner-auth)
+This library comes with the standard way of handling all the erros originated by the razorpay.
+The Error object comes with following keys and value
+
+ 1. message:
+	 1. "Missing Parameter" : If any mandatory key is missing
+	 2. "API Error" : When the Error is came from the API
+ 2. statusCode:
+	 1. -1 : When Missing Parameter
+	 2. Http Error code in all other cases
+3. error:
+	1. This is a object which contains the error message came from the razorpay api
+	2. On the case of missing parameter it will be {message: 'paramter which is missing'} 
 
 ---
 
