@@ -1,5 +1,7 @@
 'use strict'
 
+// @ts-ignore
+import npmPackage from '../package.json'
 import API from './api'
 import addonsResource from './resources/addons'
 import customersResource from './resources/customers'
@@ -15,10 +17,7 @@ import virtualAccountsResource from './resources/virtualAccounts'
 import { validateWebhookSignature } from './utils/razorpay-utils'
 
 class Razorpay {
-	static VERSION = process.env.npm_package_version || '1.0.0';
-	key_id: string;
-	key_secret: string;
-	api: API;
+	static VERSION = npmPackage.version || '1.0.0';
 	payments: ReturnType<typeof paymentsResource>;
 	paymentLinks: ReturnType<typeof paymentLinksResource>;
 	refunds: ReturnType<typeof refundsResource>;
@@ -46,27 +45,24 @@ class Razorpay {
 			throw new Error('`key_secret` is mandatory')
 		}
 
-		this.key_id = key_id
-		this.key_secret = key_secret
-
-		this.api = new API({
+		const api = new API({
 			hostUrl: 'https://api.razorpay.com/v1/',
 			ua: `razorpay-node@${Razorpay.VERSION}`,
 			key_id,
 			key_secret,
 			headers
 		})
-		this.payments = paymentsResource(this.api)
-		this.paymentLinks = paymentLinksResource(this.api)
-		this.refunds = refundsResource(this.api)
-		this.orders = ordersResource(this.api)
-		this.customers = customersResource(this.api)
-		this.transfers = transfersResource(this.api)
-		this.virtualAccounts = virtualAccountsResource(this.api)
-		this.invoices = invoicesResource(this.api)
-		this.plans = plansResource(this.api)
-		this.subscriptions = subscriptionsResource(this.api)
-		this.addons = addonsResource(this.api)
+		this.payments = paymentsResource(api)
+		this.paymentLinks = paymentLinksResource(api)
+		this.refunds = refundsResource(api)
+		this.orders = ordersResource(api)
+		this.customers = customersResource(api)
+		this.transfers = transfersResource(api)
+		this.virtualAccounts = virtualAccountsResource(api)
+		this.invoices = invoicesResource(api)
+		this.plans = plansResource(api)
+		this.subscriptions = subscriptionsResource(api)
+		this.addons = addonsResource(api)
 	}
 }
 
