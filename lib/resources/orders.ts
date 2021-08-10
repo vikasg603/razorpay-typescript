@@ -84,23 +84,17 @@ export default function orders (api: API) {
 		},
 
 		async create (params: OrderCreateParams) {
-			let { amount, currency, receipt, notes, ...otherParams } = params
-			currency = currency || 'INR'
+			const { amount } = params
 
 			if (!amount) {
 				throw new RazorpayError('Missing Paramter', '`amount` is mandatory')
 			}
 
-			const data = Object.assign({
-				amount,
-				currency,
-				receipt,
-				...otherParams
-			}, notes)
+			params.currency = params.currency || 'INR'
 
 			return api.post<OrderEntity>({
 				url: '/orders',
-				data
+				data: params
 			})
 		},
 

@@ -84,7 +84,17 @@ export interface paymentRefundParams {
 }
 
 export interface paymentTransferParams {
-	transfers?: paymentTransferEntity[]
+	transfers?: paymentTransferCreateParams[]
+}
+
+export interface paymentTransferCreateParams {
+	account: string
+	amount: number
+	currency: string
+	notes?: Notes
+	linked_account_notes?: string[]
+	on_hold?: boolean
+	on_hold_until?: number
 }
 
 export interface TransferEntity {
@@ -128,7 +138,7 @@ export default function payments (api: API) {
 			count = Number(count) || 10
 			skip = Number(skip) || 0
 
-			return api.get<paymentAllParams>({
+			return api.get<paymentAllResponse>({
 				url: '/payments',
 				data: {
 					from,

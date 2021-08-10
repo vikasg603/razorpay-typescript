@@ -22,7 +22,7 @@ export interface TransferEntity {
 	amount: number
 	currency: string
 	amount_reversed: number
-	notes: Notes[]
+	notes: Notes
 	fees: number
 	tax: number
 	on_hold: boolean
@@ -44,6 +44,15 @@ export interface TransferCreateParams {
 	amount: number;
 	currency: SupportedCurrency;
 	notes?: Notes;
+}
+
+export interface reversalEntity {
+	id: string;
+	entity: 'reversal';
+	transfer_id: string;
+	amount: number;
+	currency: SupportedCurrency;
+	created_at: number;
 }
 
 export default function (api: API) {
@@ -86,7 +95,7 @@ export default function (api: API) {
 
 			const url = `/transfers/${transferId}`
 
-			return api.get({ url })
+			return api.get<TransferEntity>({ url })
 		},
 
 		async create (params: TransferCreateParams) {
@@ -96,14 +105,16 @@ export default function (api: API) {
 			})
 		},
 
-		async edit (transferId: string, params: TransferCreateParams) {
+		/*
+		async edit (transferId: string, params: Partial<TransferCreateParams>) {
 			return api.patch<TransferEntity>({
 				url: `/transfers/${transferId}`,
 				data: params
 			})
 		},
+		*/
 
-		async reverse (transferId: string, params: {amount: string}) {
+		async reverse (transferId: string, params: {amount: string | number}) {
 			if (!transferId) {
 				throw new RazorpayError('Missing Paramter', '`transfer_id` is mandatory')
 			}
@@ -111,7 +122,7 @@ export default function (api: API) {
 			const data = params
 			const url = `/transfers/${transferId}/reversals`
 
-			return api.post({
+			return api.post<reversalEntity>({
 				url,
 				data
 			})
