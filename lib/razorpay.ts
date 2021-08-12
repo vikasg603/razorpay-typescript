@@ -15,6 +15,7 @@ import subscriptionsResource from './resources/subscriptions'
 import transfersResource from './resources/transfers'
 import virtualAccountsResource from './resources/virtualAccounts'
 import { validateWebhookSignature } from './utils/razorpay-utils'
+import RazorpayError from './utils/RazorPayError'
 
 class Razorpay {
 	static VERSION = npmPackage.version || '1.0.0';
@@ -39,11 +40,11 @@ class Razorpay {
 		const { key_id, key_secret, headers } = options
 
 		if (!key_id) {
-			throw new Error('`key_id` is mandatory')
+			throw new RazorpayError('Missing parameter', '`key_id` is mandatory')
 		}
 
 		if (!key_secret) {
-			throw new Error('`key_secret` is mandatory')
+			throw new RazorpayError('Missing parameter', '`key_secret` is mandatory')
 		}
 
 		const api = new API({

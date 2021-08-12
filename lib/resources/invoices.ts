@@ -210,7 +210,7 @@ export default function invoicesApi (api: API) {
 			const data = params
 
 			if (!invoiceId) {
-				throw new RazorpayError('Missing Parameter', MISSING_ID_ERROR)
+				throw new RazorpayError('Missing parameter', MISSING_ID_ERROR)
 			}
 
 			return api.patch<InvoiceEntity>({
@@ -230,7 +230,7 @@ export default function invoicesApi (api: API) {
 			*/
 
 			if (!invoiceId) {
-				throw new RazorpayError('Missing Parameter', MISSING_ID_ERROR)
+				throw new RazorpayError('Missing parameter', MISSING_ID_ERROR)
 			}
 
 			const url = `${BASE_URL}/${invoiceId}/issue`
@@ -249,7 +249,7 @@ export default function invoicesApi (api: API) {
 			*/
 
 			if (!invoiceId) {
-				throw new RazorpayError('Missing Parameter', MISSING_ID_ERROR)
+				throw new RazorpayError('Missing parameter', MISSING_ID_ERROR)
 			}
 
 			const url = `${BASE_URL}/${invoiceId}`
@@ -345,11 +345,11 @@ export default function invoicesApi (api: API) {
 			*/
 
 			if (!invoiceId) {
-				throw new RazorpayError('Missing Parameter', MISSING_ID_ERROR)
+				throw new RazorpayError('Missing parameter', MISSING_ID_ERROR)
 			}
 
 			if (!medium) {
-				throw new RazorpayError('Missing Parameter', '`medium` is required')
+				throw new RazorpayError('Missing parameter', '`medium` is required')
 			}
 
 			const url = `${BASE_URL}/${invoiceId}/notify_by/${medium}`

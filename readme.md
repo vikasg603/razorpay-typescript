@@ -25,11 +25,11 @@ npm i razorpay-node-typescript
 
 ## Documentation
 
-Documentation of Razorpay's API and their usage is available at [https://docs.razorpay.com](https://docs.razorpay.com)
+Documentation of Razorpay API and their usage is available at [https://docs.razorpay.com](https://docs.razorpay.com)
 
 ### Basic Usage
 
-Instantiate the razorpay instance with `key_id` & `key_secret`. You can obtain the keys from the dashboard app ([https://dashboard.razorpay.com/#/app/keys](https://dashboard.razorpay.com/#/app/keys))
+Instantiate the Razorpay instance with `key_id` & `key_secret`. You can obtain the keys from the dashboard app ([https://dashboard.razorpay.com/#/app/keys](https://dashboard.razorpay.com/#/app/keys))
 
 ```js
 var instance = new Razorpay({
@@ -38,7 +38,7 @@ var instance = new Razorpay({
 });
 ```
 
-The resources can be accessed via the instance. All the methods invocations follows the namespaced signature
+The resources can be accessed via the instance. All the methods invocations follow the namespaced signature
 
 ```js
 // API signature
@@ -66,18 +66,18 @@ instance.payments
 
 ## Error Handling
 
-This library comes with the standard way of handling all the erros originated by the razorpay.
-The Error object comes with following keys and value
+This library comes with the standard way of handling all the errors originated by the Razorpay.
+The Error object comes with the following keys and value
 
  1. message:
-	 1. "Missing Parameter" : If any mandatory key is missing
-	 2. "API Error" : When the Error is came from the API
+	 1. "Missing parameter": If any mandatory key is missing
+	 2. "API Error": When the Error comes from the API
  2. statusCode:
-	 1. -1 : When Missing Parameter
-	 2. Http Error code in all other cases
+	 1. -1: When Missing parameter
+	 2. HTTP Error code in all other cases
 3. error:
-	1. This is a object which contains the error message came from the razorpay api
-	2. On the case of missing parameter it will be {message: 'paramter which is missing'} 
+	1. This is an object which contains the error message that came from the Razorpay API
+	2. In the case of Missing parameter, it will be {message: 'parameter which is missing'} 
 
 ---
 
@@ -95,12 +95,12 @@ npm test
 
 ## Release
 
-1. Switch to `master` branch. Make sure you have the latest changes in the local master
+1. Switch to the `master` branch. Make sure you have the latest changes in the local master
 2. Update the `CHANGELOG.md` & bump the version in `package.json`
 3. Commit
-4. Tag the release & push to Github
+4. Tag the release & push it to Github
 5. Create a release on GitHub using the website with more details about the release
-6. Publish to npm with `npm publish` command
+6. Publish to npm with the `npm publish` command
 
 ## Licence
 

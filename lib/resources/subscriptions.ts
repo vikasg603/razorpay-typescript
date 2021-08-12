@@ -126,7 +126,7 @@ export default function subscriptionsApi (api: API) {
 			 */
 
 			if (!subscriptionId) {
-				throw new RazorpayError('Missing Parameter', MISSING_ID_ERROR)
+				throw new RazorpayError('Missing parameter', MISSING_ID_ERROR)
 			}
 
 			const url = `${BASE_URL}/${subscriptionId}`
@@ -182,11 +182,11 @@ export default function subscriptionsApi (api: API) {
 			const url = `${BASE_URL}/${subscriptionId}/cancel`
 
 			if (!subscriptionId) {
-				throw new RazorpayError('Missing Parameter', MISSING_ID_ERROR)
+				throw new RazorpayError('Missing parameter', MISSING_ID_ERROR)
 			}
 
 			if (typeof cancelAtCycleEnd !== 'boolean') {
-				throw new RazorpayError('Missing Parameter', 'The second parameter, Cancel at the end of cycle should be a Boolean')
+				throw new RazorpayError('Missing parameter', 'The second parameter, Cancel at the end of cycle should be a Boolean')
 			}
 
 			return api.post<SubscriptionEntity>({
@@ -207,7 +207,7 @@ export default function subscriptionsApi (api: API) {
 			const url = `${BASE_URL}/${subscriptionId}/addons`
 
 			if (!subscriptionId) {
-				throw new RazorpayError('Missing Parameter', MISSING_ID_ERROR)
+				throw new RazorpayError('Missing parameter', MISSING_ID_ERROR)
 			}
 
 			return api.post<AddonCreateResponse>({

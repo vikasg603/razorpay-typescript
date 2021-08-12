@@ -99,7 +99,7 @@ export default function (api: API) {
 
 		async fetch (virtualAccountId: string) {
 			if (!virtualAccountId) {
-				throw new RazorpayError('Missing Parameter', ID_REQUIRED_MSG)
+				throw new RazorpayError('Missing parameter', ID_REQUIRED_MSG)
 			}
 
 			const url = `${BASE_URL}/${virtualAccountId}`
@@ -116,7 +116,7 @@ export default function (api: API) {
 
 		async close (virtualAccountId: string) {
 			if (!virtualAccountId) {
-				throw new RazorpayError('Missing Parameter', ID_REQUIRED_MSG)
+				throw new RazorpayError('Missing parameter', ID_REQUIRED_MSG)
 			}
 
 			return api.post({
@@ -126,7 +126,7 @@ export default function (api: API) {
 
 		async fetchPayments (virtualAccountId: string) {
 			if (!virtualAccountId) {
-				throw new RazorpayError('Missing Parameter', ID_REQUIRED_MSG)
+				throw new RazorpayError('Missing parameter', ID_REQUIRED_MSG)
 			}
 
 			const url = `${BASE_URL}/${virtualAccountId}/payments`

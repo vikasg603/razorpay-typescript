@@ -75,7 +75,7 @@ export default function orders (api: API) {
 
 		async fetch (orderId: string) {
 			if (!orderId) {
-				throw new RazorpayError('Missing Parameter', '`order_id` is mandatory')
+				throw new RazorpayError('Missing parameter', '`order_id` is mandatory')
 			}
 
 			return api.get<OrderEntity>({

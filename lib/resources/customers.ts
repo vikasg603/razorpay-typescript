@@ -41,7 +41,7 @@ export default function customers (api: API) {
 
 		async edit (customerId: string, params: CustomerCreateParams) {
 			if (!customerId) {
-				throw new RazorpayError('Missing Parameter', MISSING_ID_ERROR)
+				throw new RazorpayError('Missing parameter', MISSING_ID_ERROR)
 			}
 
 			return api.put({
@@ -56,7 +56,7 @@ export default function customers (api: API) {
 
 		async fetch (customerId: string) {
 			if (!customerId) {
-				throw new RazorpayError('Missing Parameter', MISSING_ID_ERROR)
+				throw new RazorpayError('Missing parameter', MISSING_ID_ERROR)
 			}
 			return api.get({
 				url: `/customers/${customerId}`
@@ -65,7 +65,7 @@ export default function customers (api: API) {
 
 		async fetchTokens (customerId: string) {
 			if (!customerId) {
-				throw new RazorpayError('Missing Parameter', MISSING_ID_ERROR)
+				throw new RazorpayError('Missing parameter', MISSING_ID_ERROR)
 			}
 			return api.get({
 				url: `/customers/${customerId}/tokens`
@@ -74,10 +74,10 @@ export default function customers (api: API) {
 
 		async fetchToken (customerId: string, tokenId: string) {
 			if (!customerId) {
-				throw new RazorpayError('Missing Parameter', MISSING_ID_ERROR)
+				throw new RazorpayError('Missing parameter', MISSING_ID_ERROR)
 			}
 			if (!tokenId) {
-				throw new RazorpayError('Missing Parameter', 'Token ID is mandatory')
+				throw new RazorpayError('Missing parameter', 'Token ID is mandatory')
 			}
 			return api.get({
 				url: `/customers/${customerId}/tokens/${tokenId}`
@@ -86,10 +86,10 @@ export default function customers (api: API) {
 
 		async deleteToken (customerId: string, tokenId: string) {
 			if (!customerId) {
-				throw new RazorpayError('Missing Parameter', MISSING_ID_ERROR)
+				throw new RazorpayError('Missing parameter', MISSING_ID_ERROR)
 			}
 			if (!tokenId) {
-				throw new RazorpayError('Missing Parameter', 'Token ID is mandatory')
+				throw new RazorpayError('Missing parameter', 'Token ID is mandatory')
 			}
 			return api.delete<[]>({
 				url: `/customers/${customerId}/tokens/${tokenId}`

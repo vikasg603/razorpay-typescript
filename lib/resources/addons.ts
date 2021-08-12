@@ -53,7 +53,7 @@ export default function addon (api: API) {
        */
 
 			if (!addonId) {
-				throw new RazorpayError('Missing Parameter', MISSING_ID_ERROR)
+				throw new RazorpayError('Missing parameter', MISSING_ID_ERROR)
 			}
 
 			const url = `${BASE_URL}/${addonId}`
@@ -71,7 +71,7 @@ export default function addon (api: API) {
        */
 
 			if (!addonId) {
-				throw new RazorpayError('Missing Parameter', MISSING_ID_ERROR)
+				throw new RazorpayError('Missing parameter', MISSING_ID_ERROR)
 			}
 
 			const url = `${BASE_URL}/${addonId}`

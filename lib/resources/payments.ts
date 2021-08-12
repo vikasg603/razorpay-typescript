@@ -151,7 +151,7 @@ export default function payments (api: API) {
 
 		async fetch (paymentId: string) {
 			if (!paymentId) {
-				throw new RazorpayError('Missing Parameter', ID_REQUIRED_MSG)
+				throw new RazorpayError('Missing parameter', ID_REQUIRED_MSG)
 			}
 
 			return api.get<PaymentEntity>({ url: `/payments/${paymentId}` })
@@ -159,7 +159,7 @@ export default function payments (api: API) {
 
 		async capture (paymentId: string, amount: number | string, currency?: SupportedCurrency) {
 			if (!amount) {
-				throw new Error('`amount` is mandatory')
+				throw new RazorpayError('Missing parameter', '`amount` is mandatory')
 			}
 
 			const payload: { amount: number, currency?: SupportedCurrency } = {
@@ -173,7 +173,7 @@ export default function payments (api: API) {
 			// Checking this here because of the above if condition.
 
 			if (!paymentId) {
-				throw new RazorpayError('Missing Parameter', ID_REQUIRED_MSG)
+				throw new RazorpayError('Missing parameter', ID_REQUIRED_MSG)
 			}
 
 			return api.post<PaymentEntity>({
@@ -184,7 +184,7 @@ export default function payments (api: API) {
 
 		async refund (paymentId: string, params: paymentRefundParams = {}) {
 			if (!paymentId) {
-				throw new RazorpayError('Missing Parameter', ID_REQUIRED_MSG)
+				throw new RazorpayError('Missing parameter', ID_REQUIRED_MSG)
 			}
 
 			return api.post<RefundEntity>({
@@ -195,7 +195,7 @@ export default function payments (api: API) {
 
 		async transfer (paymentId: string, params: paymentTransferParams = {}) {
 			if (!paymentId) {
-				throw new RazorpayError('Missing Parameter', ID_REQUIRED_MSG)
+				throw new RazorpayError('Missing parameter', ID_REQUIRED_MSG)
 			}
 
 			if (params.transfers) {
@@ -212,7 +212,7 @@ export default function payments (api: API) {
 
 		async bankTransfer (paymentId: string) {
 			if (!paymentId) {
-				throw new RazorpayError('Missing Parameter', ID_REQUIRED_MSG)
+				throw new RazorpayError('Missing parameter', ID_REQUIRED_MSG)
 			}
 
 			return api.get({

@@ -86,7 +86,7 @@ export default function paymentLinks (api: API) {
 			const { amount } = params
 
 			if (!amount) {
-				throw new RazorpayError('Missing Parameter', ID_REQUIRED_MSG)
+				throw new RazorpayError('Missing parameter', ID_REQUIRED_MSG)
 			}
 
 			return api.post<PaymentLinkEntity>({
@@ -115,7 +115,7 @@ export default function paymentLinks (api: API) {
 
 		async fetch (payment_id: string) {
 			if (!payment_id) {
-				throw new RazorpayError('Missing Parameter', '`payment_id` is missing')
+				throw new RazorpayError('Missing parameter', '`payment_id` is missing')
 			}
 			return api.get<PaymentLinkEntity>({ url: `/payment-links/${payment_id}` })
 		}

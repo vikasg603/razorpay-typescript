@@ -93,7 +93,7 @@ export default function plansApi (api: API) {
 			*/
 
 			if (!planId) {
-				throw new RazorpayError('Missing Parameter', MISSING_ID_ERROR)
+				throw new RazorpayError('Missing parameter', MISSING_ID_ERROR)
 			}
 
 			const url = `${BASE_URL}/${planId}`
