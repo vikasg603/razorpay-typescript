@@ -9,18 +9,22 @@ Read up here for getting started and understanding the payment flow with Razorpa
 
 ## Why this library?
 
-1.  typescript support.
+1.  Typescript support.
 2.  Removed legacy callbacks ( If you were using the promise API, then you don't have to change anything at all)
 3.  Improved code to not require any module inside the function (This was the major reason I opted to create my own library, as requiring module is CPU intensive synchronous task, and requiring it inside the function can block other requests)
 4.  Added support for payment-links
 5.  Removed deprecated request and request-promise and shifted to Axios (https://github.com/request/request/issues/3142).
 6.  Removed the legacy error handling where you have to handle both synchronous as well as promise errors (added the standard RazorpayError class for handling all the errors).
-7.  Any many more reasons
 
 ## Installation
+Using `npm`
 
 ```bash
 npm i razorpay-node-typescript
+```
+Using `yarn`
+```bash
+yarn add razorpay-node-typescript
 ```
 
 ## Documentation
@@ -32,7 +36,9 @@ Documentation of Razorpay API and their usage is available at [https://docs.razo
 Instantiate the Razorpay instance with `key_id` & `key_secret`. You can obtain the keys from the dashboard app ([https://dashboard.razorpay.com/#/app/keys](https://dashboard.razorpay.com/#/app/keys))
 
 ```js
-var instance = new Razorpay({
+const Razorpay = require('razorpay-node-typescript');
+
+const instance = new Razorpay({
   key_id: 'YOUR_KEY_ID',
   key_secret: 'YOUR_KEY_SECRET',
 });
